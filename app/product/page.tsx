@@ -1,3 +1,3 @@
 import { SiteShell } from '@/components/site-shell'
-import { FeaturePage } from '@/components/feature-page'
-export default function ProductPage() { return <SiteShell><FeaturePage kind="product" /></SiteShell> }
+import { ProductPage } from '@/components/feature-page'
+export default function ProductRoute() { return <SiteShell><ProductPage /></SiteShell> }
