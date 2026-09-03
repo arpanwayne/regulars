@@ -1,2 +1,3 @@
-import { SiteShell, PageHero } from '@/components/site-shell'
-export default function PrivacyPage() { return <SiteShell><main><PageHero eyebrow="Privacy" title="Your information, handled carefully." body="This is a simple overview for the Regulars website. We only use information you share with us to respond to your request and improve the product." /><section className="mx-auto max-w-3xl px-5 pb-24 text-sm leading-7 text-muted-foreground md:px-8"><h2 className="font-serif text-2xl text-foreground">What we collect</h2><p className="mt-3">When you request a demo, we collect your name, email, and business details. We do not sell personal information.</p><h2 className="mt-10 font-serif text-2xl text-foreground">Questions</h2><p className="mt-3">For privacy questions, contact the Regulars team through the demo form.</p></section></main></SiteShell> }
+import { SiteShell } from '@/components/site-shell'
+import { LegalPage } from '@/components/feature-page'
+export default function PrivacyPage() { return <SiteShell><LegalPage kind="privacy" /></SiteShell> }

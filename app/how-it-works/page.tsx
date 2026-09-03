@@ -1,3 +1,3 @@
-import { SiteShell, PageHero, CTA } from '@/components/site-shell'
-const steps = [['Invite','A small QR card at the counter gives people an easy reason to join.'],['Remember','Regulars keeps the details that make a visit feel less transactional.'],['Reach out','Send a warm note, a useful nudge, or a reason to come back.']]
-export default function HowItWorksPage() { return <SiteShell><main><PageHero eyebrow="How it works" title="The relationship is the product." body="Three small moments, stitched together. Regulars helps you turn a good visit into a pattern people love." /><section className="mx-auto max-w-7xl px-5 pb-20 md:px-8"><div className="grid gap-4 md:grid-cols-3">{steps.map(([title, body], i) => <article key={title} className="rounded-3xl bg-secondary p-7 md:min-h-72"><span className="font-mono text-sm text-primary">0{i + 1}</span><h2 className="mt-20 font-serif text-3xl">{title}</h2><p className="mt-3 text-sm leading-6 text-muted-foreground">{body}</p></article>)}</div></section><CTA /></main></SiteShell> }
+import { SiteShell } from '@/components/site-shell'
+import { HowItWorksPage } from '@/components/feature-page'
+export default function HowItWorksRoute() { return <SiteShell><HowItWorksPage /></SiteShell> }
