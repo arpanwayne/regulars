@@ -1,14 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowDownRight, ArrowRight, Check, ChevronDown, Menu, MessageCircle, QrCode, Sparkles, X } from 'lucide-react'
-
-const navItems = [
-  ['Product', '#product'],
-  ['How it works', '#how-it-works'],
-  ['For businesses', '#businesses'],
-  ['About', '#about'],
-]
+import { ArrowDownRight, ArrowRight, Check, MessageCircle, QrCode, Sparkles } from 'lucide-react'
 
 function BrandMark() {
   return <span className="brand-mark" aria-hidden="true"><span /><span /><span /><span /></span>
@@ -43,13 +36,10 @@ function Timeline() {
 }
 
 export function RegularsSite() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [sent, setSent] = useState(false)
   const [business, setBusiness] = useState<'restaurant' | 'salon'>('restaurant')
 
   return <main className="regulars-site">
-    <nav className="site-nav"><a href="#top" className="wordmark"><BrandMark /> <span>regulars</span></a><div className={`nav-links ${menuOpen ? 'is-open' : ''}`}>{navItems.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}<a href="#demo" className="nav-cta" onClick={() => setMenuOpen(false)}>See how it works <ArrowRight size={14} /></a></div><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>{menuOpen ? <X /> : <Menu />}</button></nav>
-
     <section className="hero" id="top"><div className="hero-copy"><p className="eyebrow"><span className="eyebrow-dot" /> A softer way to grow</p><h1>Your best<br /><em>customers</em><br />are already here.</h1><p className="hero-dek">Regulars helps local businesses stay close to the people who already love what they do. Thoughtful reminders, sent on WhatsApp.</p><div className="hero-actions"><a className="button button-dark" href="#demo">Get started <ArrowRight size={16} /></a><a className="text-link" href="#how-it-works">See how it works <ArrowDownRight size={16} /></a></div></div><div className="hero-art"><div className="sun-disc" /><div className="hero-card"><span className="tiny-label">A little nudge</span><span className="hero-message">Still thinking<br />about that <i>cacio e pepe?</i></span><span className="hero-send"><MessageCircle size={14} /> sent via WhatsApp</span></div><div className="hero-cup">☕</div><div className="hero-table-line" /><span className="art-note">THE GOOD<br /><b>STUFF</b> STAYS.</span></div></section>
 
     <section className="manifesto"><p className="eyebrow">THE REGULARS WAY</p><h2>Not more noise.<br /><span>More of the right moments.</span></h2><p className="manifesto-copy">The best businesses don&apos;t need to shout. They need a simple way to remember who walks through their door — and a gentle reason for them to return.</p></section>
@@ -66,7 +56,6 @@ export function RegularsSite() {
 
     <section className="cta-section" id="demo"><div className="cta-inner"><p className="eyebrow eyebrow-light">READY WHEN YOU ARE</p><h2>Keep the good<br /><em>going.</em></h2>{sent ? <div className="success-message"><Check size={18} /> Thanks — we&apos;ll be in touch soon.</div> : <form onSubmit={(e) => { e.preventDefault(); setSent(true) }}><input aria-label="Your email address" type="email" placeholder="Your email address" required /><button className="button button-peach" type="submit">Show me Regulars <ArrowRight size={16} /></button></form>}<p className="fine-print">No pressure. No pitch deck. Just a conversation.</p></div><span className="cta-scribble">good things<br /><b>come back.</b></span></section>
 
-    <footer className="site-footer"><a href="#top" className="wordmark"><BrandMark /> <span>regulars</span></a><span>© 2026 Wayne E Solutions</span><a href="#top">Back to top ↑</a></footer>
   </main>
 }
 

@@ -1,2 +1,3 @@
-import { SiteShell, PageHero } from '@/components/site-shell'
-export default function TermsPage() { return <SiteShell><main><PageHero eyebrow="Terms" title="A few clear expectations." body="Regulars is built to help local businesses create better customer relationships. These website terms keep things straightforward while the product evolves." /><section className="mx-auto max-w-3xl px-5 pb-24 text-sm leading-7 text-muted-foreground md:px-8"><h2 className="font-serif text-2xl text-foreground">Using this site</h2><p className="mt-3">Please use the site lawfully and do not attempt to interfere with its operation or misuse information shared through it.</p><h2 className="mt-10 font-serif text-2xl text-foreground">Product information</h2><p className="mt-3">Features and availability may change as we continue building Regulars with independent businesses.</p></section></main></SiteShell> }
+import { SiteShell } from '@/components/site-shell'
+import { LegalPage } from '@/components/feature-page'
+export default function TermsPage() { return <SiteShell><LegalPage kind="terms" /></SiteShell> }
