@@ -1,7 +1,19 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowDownRight, ArrowRight, Check, Coffee, MessageCircle, QrCode, Sparkles } from 'lucide-react'
+import { ArrowDownRight, ArrowRight, Check, MessageCircle, QrCode, Sparkles } from 'lucide-react'
+
+function TeaCup({ size = 100 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="30" cy="52" rx="18" ry="3.6" fill="currentColor" opacity=".28" />
+      <path d="M17 23c0-1.6 1.4-2.2 2-2.2h22c.6 0 2 .6 2 2.2l-2.6 18.5A7 7 0 0 1 33.5 48h-7a7 7 0 0 1-6.9-6.5L17 23Z" fill="currentColor" />
+      <ellipse cx="29" cy="22.5" rx="14.5" ry="2.6" fill="currentColor" />
+      <path d="M41 25h4.5a5.6 5.6 0 1 1 0 11.2h-3.7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      <path d="M19 11c-2 2-2 4.3 0 6.3M27 8.2c-2 2-2 4.5 0 6.5M35 11c-2 2-2 4.3 0 6.3" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" opacity=".6" />
+    </svg>
+  )
+}
 
 function BrandMark() {
   return <span className="brand-mark" aria-hidden="true"><span /><span /><span /><span /></span>
@@ -50,7 +62,7 @@ export function RegularsSite() {
 
     <section className="split-section dark-section"><QRVisual /><div className="split-copy"><p className="eyebrow eyebrow-light">START WITH A SCAN</p><h2>A tiny gesture<br /><em>goes a long way.</em></h2><p>Put your Regulars QR code where the goodbyes happen. Your customer scans, joins in seconds, and you&apos;ve got a direct line to the people who matter most.</p><div className="check-list"><span><Check size={15} /> No app to download</span><span><Check size={15} /> No awkward sign-up</span><span><Check size={15} /> Just your voice, closer</span></div></div></section>
 
-    <section className="business-section section-pad" id="businesses"><div className="section-intro"><p className="eyebrow">MADE FOR THE INDEPENDENT</p><h2>Your place has<br /><em>its own rhythm.</em></h2><p>Regulars adapts to the way your business already works.</p></div><div className="business-toggle"><button className={business === 'restaurant' ? 'active' : ''} onClick={() => setBusiness('restaurant')}>Restaurants & cafés</button><button className={business === 'salon' ? 'active' : ''} onClick={() => setBusiness('salon')}>Salons & studios</button></div><div className="business-card"><div className={`business-art ${business}`}><div className="business-sun" /><span className="business-stamp">{business === 'restaurant' ? <>GOOD FOOD<br />GOOD PEOPLE</> : <>TAKE<br />YOUR TIME</>}</span><div className="business-object">{business === 'restaurant' ? <Coffee size={112} strokeWidth={1.4} /> : '✺'}</div></div><div className="business-card-copy"><p className="eyebrow">{business === 'restaurant' ? 'FOR RESTAURANTS & CAFÉS' : 'FOR SALONS & STUDIOS'}</p><h3>{business === 'restaurant' ? 'Bring back the table people talk about.' : 'Make every appointment feel personal.'}</h3><p>{business === 'restaurant' ? 'Remind guests about the dish they loved, the corner table they claimed, and the next evening they haven&apos;t planned yet.' : 'Help clients remember their next visit, fill a quiet spot, and keep the relationship warm between appointments.'}</p><a className="text-link" href="#demo">Explore for {business === 'restaurant' ? 'restaurants' : 'salons'} <ArrowRight size={15} /></a></div></div></section>
+    <section className="business-section section-pad" id="businesses"><div className="section-intro"><p className="eyebrow">MADE FOR THE INDEPENDENT</p><h2>Your place has<br /><em>its own rhythm.</em></h2><p>Regulars adapts to the way your business already works.</p></div><div className="business-toggle"><button className={business === 'restaurant' ? 'active' : ''} onClick={() => setBusiness('restaurant')}>Restaurants & cafés</button><button className={business === 'salon' ? 'active' : ''} onClick={() => setBusiness('salon')}>Salons & studios</button></div><div className="business-card"><div className={`business-art ${business}`}><div className="business-sun">{business === 'restaurant' ? <TeaCup size={104} /> : <span className="business-object-inline">✺</span>}</div><span className="business-stamp">{business === 'restaurant' ? <>GOOD FOOD<br />GOOD PEOPLE</> : <>TAKE<br />YOUR TIME</>}</span></div><div className="business-card-copy"><p className="eyebrow">{business === 'restaurant' ? 'FOR RESTAURANTS & CAFÉS' : 'FOR SALONS & STUDIOS'}</p><h3>{business === 'restaurant' ? 'Bring back the table people talk about.' : 'Make every appointment feel personal.'}</h3><p>{business === 'restaurant' ? 'Remind guests about the dish they loved, the corner table they claimed, and the next evening they haven&apos;t planned yet.' : 'Help clients remember their next visit, fill a quiet spot, and keep the relationship warm between appointments.'}</p><a className="text-link" href="#demo">Explore for {business === 'restaurant' ? 'restaurants' : 'salons'} <ArrowRight size={15} /></a></div></div></section>
 
     <section className="about-strip" id="about"><div className="about-mark"><Sparkles size={23} /></div><div><p className="eyebrow">BUILT BY WAYNE E SOLUTIONS</p><h2>Technology with<br /><em>good manners.</em></h2></div><p>We make digital tools for the people who make places worth returning to. Regulars is our belief that growth can feel more like care.</p></section>
 
