@@ -1,22 +1,34 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, ArrowUpRight, X } from 'lucide-react'
+import { legalNav } from '@/lib/legal-content'
 
 const links = [
   ['Product', '/product'],
   ['How it works', '/how-it-works'],
   ['For businesses', '/businesses'],
   ['About', '/about'],
+  ['Team', '/team'],
 ]
+
+function Logo({ className = '' }: { className?: string }) {
+  return (
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+      <Image src="/images/logo-mark.png" alt="Regulars logo" width={32} height={32} className="size-8 rounded-lg" />
+      <span className="font-serif text-2xl tracking-tight">regulars<span className="text-primary">.</span></span>
+    </span>
+  )
+}
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   return <div className="min-h-screen bg-background text-foreground">
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <Link href="/" className="font-serif text-2xl tracking-tight" onClick={() => setOpen(false)}>regulars<span className="text-primary">.</span></Link>
+        <Link href="/" onClick={() => setOpen(false)}><Logo /></Link>
         <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
           {links.map(([label, href]) => <Link key={href} href={href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{label}</Link>)}
           <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">Book a demo <ArrowUpRight className="size-4" /></Link>
@@ -28,10 +40,37 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     {children}
     <footer className="border-t border-border bg-secondary/30">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-12 md:flex-row md:justify-between md:px-8">
-        <div><Link href="/" className="font-serif text-2xl">regulars<span className="text-primary">.</span></Link><p className="mt-3 max-w-xs text-sm leading-6 text-muted-foreground">The quiet system behind the places people keep coming back to.</p></div>
-        <div className="grid grid-cols-2 gap-x-14 gap-y-3 text-sm"><Link href="/product">Product</Link><Link href="/how-it-works">How it works</Link><Link href="/businesses">Businesses</Link><Link href="/about">About</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div>
+        <div className="max-w-xs">
+          <Link href="/"><Logo /></Link>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">The quiet system behind the places people keep coming back to.</p>
+        </div>
+        <div className="grid grid-cols-2 gap-x-16 gap-y-8 text-sm sm:grid-cols-3">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">Explore</p>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/product" className="text-muted-foreground hover:text-foreground">Product</Link>
+              <Link href="/how-it-works" className="text-muted-foreground hover:text-foreground">How it works</Link>
+              <Link href="/businesses" className="text-muted-foreground hover:text-foreground">Businesses</Link>
+              <Link href="/about" className="text-muted-foreground hover:text-foreground">About</Link>
+              <Link href="/team" className="text-muted-foreground hover:text-foreground">Team</Link>
+            </div>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">Legal</p>
+            <div className="flex flex-col gap-2.5">
+              {legalNav.map(({ label, href }) => <Link key={href} href={href} className="text-muted-foreground hover:text-foreground">{label}</Link>)}
+            </div>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">Get in touch</p>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/contact" className="text-muted-foreground hover:text-foreground">Book a demo</Link>
+              <a href="mailto:support@wayneesolutions.com" className="text-muted-foreground hover:text-foreground">support@wayneesolutions.com</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="mx-auto max-w-7xl border-t border-border px-5 py-5 text-xs text-muted-foreground md:px-8">© 2026 Regulars. Made for local places.</div>
+      <div className="mx-auto max-w-7xl border-t border-border px-5 py-5 text-xs text-muted-foreground md:px-8">© 2026 Regulars, a product of Wayne E Solutions. Made for local places.</div>
     </footer>
   </div>
 }

@@ -4,8 +4,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Check, Clock, Heart, MessageCircle, QrCode, Sparkles, Store, Users, Zap } from 'lucide-react'
 import { CTA, PageHero } from './site-shell'
+import { legalDocs, type LegalKind } from '@/lib/legal-content'
 
 type Kind = 'product' | 'how' | 'businesses' | 'about'
+
+const TEAM = [
+  { initials: 'PK', name: 'Pankaj Kumar', role: 'Founder & Director' },
+  { initials: 'PN', name: 'Pavnoor Kaur', role: 'Co-founder' },
+  { initials: 'PM', name: 'Piyush Mehndiratta', role: 'Marketing Head' },
+  { initials: 'SM', name: 'Surbhi Mehndiratta', role: 'Graphic Designer' },
+  { initials: 'BK', name: 'Baljeet Kaur', role: 'Graphic Designer' },
+  { initials: 'AS', name: 'Arpan Saini', role: 'Software Developer' },
+  { initials: 'SK', name: 'Sant Kaur', role: 'Senior Software Developer' },
+  { initials: 'MK', name: 'Mandeep Kaur', role: 'Senior Web Developer' },
+]
 
 export function ProductPage() {
   return <>
@@ -190,6 +202,26 @@ export function AboutPage() {
   </>
 }
 
+export function TeamPage() {
+  return <>
+    <PageHero eyebrow="The people behind Regulars" title="Meet the team." body="Regulars is built by Wayne E Solutions — a small team based in Ludhiana, Punjab, building the quiet system behind the places people keep coming back to." />
+    <main className="mx-auto max-w-6xl px-5 pb-24 md:px-8">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {TEAM.map((m) => (
+          <div key={m.name} className="rounded-3xl border border-border bg-secondary/30 p-8 text-center hover:border-primary/50 transition-colors">
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary text-primary-foreground font-serif text-2xl">
+              {m.initials}
+            </div>
+            <div className="mt-5 font-serif text-xl">{m.name}</div>
+            <div className="mt-1 text-sm leading-6 text-muted-foreground">{m.role}</div>
+          </div>
+        ))}
+      </div>
+    </main>
+    <CTA />
+  </>
+}
+
 export function ContactPage() {
   return <>
     <PageHero eyebrow="Book a demo" title="Let's make the next visit easy." body="Tell us about your place. We'll show you how Regulars fits into the rhythm you already have." />
@@ -227,23 +259,27 @@ export function ContactPage() {
   </>
 }
 
-export function LegalPage({ kind }: { kind: 'privacy' | 'terms' }) {
-  const isPrivacy = kind === 'privacy'
+export function LegalPage({ kind }: { kind: LegalKind }) {
+  const doc = legalDocs[kind]
   return <>
-    <PageHero 
-      eyebrow={isPrivacy ? 'Privacy' : 'Terms'} 
-      title={isPrivacy ? 'Your information, treated with care.' : 'The simple version.'} 
-      body={isPrivacy ? 'We only collect what helps us provide Regulars and communicate with you.' : 'These terms explain the basics of using Regulars and our website.'} 
-    />
+    <PageHero eyebrow={doc.eyebrow} title={doc.title} body={`Effective ${doc.effectiveDate} · Regulars (a product of Wayne E Solutions)`} />
     <article className="mx-auto max-w-3xl px-5 pb-24 md:px-8">
       <div className="rounded-3xl bg-secondary/50 p-8 md:p-12 border border-border space-y-8">
-        <div>
-          <h2 className="font-serif text-3xl mb-4">{isPrivacy ? 'What we collect' : 'Using the service'}</h2>
-          <p className="leading-8 text-muted-foreground">We keep things clear, limited, and purposeful. If you have a question about this page, contact us through the demo page and we'll answer plainly.</p>
-        </div>
+        <p className="leading-8 text-muted-foreground">{doc.intro}</p>
+        {doc.sections.map((section, i) => (
+          <div key={i} className={section.heading ? 'border-t border-border pt-8' : ''}>
+            {section.heading && <h2 className="font-serif text-2xl md:text-3xl mb-4">{section.heading}</h2>}
+            {section.paragraphs.map((p, j) => <p key={j} className="leading-8 text-muted-foreground mb-3 last:mb-0">{p}</p>)}
+            {section.bullets && (
+              <ul className="mt-3 space-y-2 list-disc pl-5">
+                {section.bullets.map((b, k) => <li key={k} className="leading-7 text-muted-foreground">{b}</li>)}
+              </ul>
+            )}
+          </div>
+        ))}
         <div className="border-t border-border pt-8">
-          <h2 className="font-serif text-3xl mb-4">Questions?</h2>
-          <p className="leading-8 text-muted-foreground">Reach out through our <Link href="/contact" className="text-primary hover:underline font-semibold">contact page</Link> and our team will help.</p>
+          <h2 className="font-serif text-2xl md:text-3xl mb-4">Questions?</h2>
+          <p className="leading-8 text-muted-foreground">Reach out through our <Link href="/contact" className="text-primary hover:underline font-semibold">contact page</Link> or email <a href="mailto:support@wayneesolutions.com" className="text-primary hover:underline font-semibold">support@wayneesolutions.com</a> and our team will help.</p>
         </div>
       </div>
     </article>
