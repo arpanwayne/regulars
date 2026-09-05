@@ -17,8 +17,8 @@ const links = [
 function Logo({ className = '' }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <Image src="/images/logo-mark.png" alt="Regulars logo" width={32} height={32} className="size-8" />
-      <span className="font-serif text-2xl tracking-tight">regulars<span className="text-primary">.</span></span>
+      <Image src="/images/logo-mark.png" alt="" aria-hidden width={32} height={32} className="size-8" />
+      <Image src="/images/logo-wordmark.png" alt="Regulars" width={806} height={186} className="h-6 w-auto" />
     </span>
   )
 }
